@@ -11,7 +11,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formkey = GlobalKey<FormState>();
-
+  bool drp1 =false;
+  bool drp2 =false;
   var dropdownValue = 'choose security question';
   var dropdownValue2 = 'choose security question';
 
@@ -441,17 +442,23 @@ class _SignUpState extends State<SignUp> {
                             color: Colors.white,
                           ),
                           elevation: 16,
+                          
                           style: const TextStyle(
                               color: Colors.white, fontSize: 17),
                           validator: (dropdownValue) {
                             if (dropdownValue == 'choose security question' ||
-                                dropdownValue2 == dropdownValue)
-                              return 'choose different items!';
-                            else
-                              return null;
+                                dropdownValue2 == dropdownValue){
+                              setState(() {
+                                drp1=false;
+                              });
+                              return 'choose different items!';}
+                            else{
+                              
+                              return null;}
                           },
                           onChanged: (String? newValue) {
                             setState(() {
+                              drp1 = true;
                               dropdownValue = newValue!;
                             });
                           },
@@ -468,6 +475,56 @@ class _SignUpState extends State<SignUp> {
                           }).toList(),
                         ),
                       )),
+                  //asnwer1
+                  Visibility(
+              child:Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: Container(
+                      width: 300,
+                      height: 60,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                            hintText: 'answer',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.greenAccent, width: 5.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 5.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 5.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 5.0),
+                            ),
+                            suffixIcon: Icon(
+                              Icons.question_mark,
+                              color: Colors.white,
+                            ),
+                            suffixIconColor: Colors.white,
+                            errorStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            hintStyle:
+                                TextStyle(fontSize: 20, color: Colors.white)),
+                        validator: ((value) {
+                          if (value!.isEmpty ||
+                              value == null)
+                            return ('enter an answer');
+                          else
+                            return null;
+                        }),
+                      ),
+                    ),
+                  ),
+              visible: drp1,
+            ),
                   //dropdown2
                   Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -511,13 +568,17 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.white, fontSize: 17),
                           validator: (dropdownValue2) {
                             if (dropdownValue2 == 'choose security question' ||
-                                dropdownValue2 == dropdownValue)
-                              return 'choose different items!';
+                                dropdownValue2 == dropdownValue){
+                              setState(() {
+                                drp2=false;
+                              });
+                              return 'choose different items!';}
                             else
                               return null;
                           },
                           onChanged: (String? newValue) {
                             setState(() {
+                              drp2=true;
                               dropdownValue2 = newValue!;
                             });
                           },
@@ -534,6 +595,56 @@ class _SignUpState extends State<SignUp> {
                           }).toList(),
                         ),
                       )),
+                  //answer2
+                  Visibility(
+              child:Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: Container(
+                      width: 300,
+                      height: 60,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                            hintText: 'answer',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.greenAccent, width: 5.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 5.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 5.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 5.0),
+                            ),
+                            suffixIcon: Icon(
+                              Icons.question_mark,
+                              color: Colors.white,
+                            ),
+                            suffixIconColor: Colors.white,
+                            errorStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            hintStyle:
+                                TextStyle(fontSize: 20, color: Colors.white)),
+                        validator: ((value) {
+                          if (value!.isEmpty ||
+                              value == null)
+                            return ('enter an answer');
+                          else
+                            return null;
+                        }),
+                      ),
+                    ),
+                  ),
+              visible: drp2,
+            ),
                   //button
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
